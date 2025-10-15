@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contabilizador de Hábitos Diários</title>
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Biblioteca para exportar relatórios em PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <header>
+    <h1>Contabilizador de Hábitos</h1>
+  </header>
+  <!-- Navegação entre as seções principais do aplicativo -->
+  <nav>
+    <button id="tabRegister" class="active">Registrar</button>
+    <button id="tabReport">Relatórios</button>
+    <button id="tabNotifications">Notificações</button>
+  </nav>
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- Seção de registro de hábitos -->
+    <section id="registerSection">
+      <h2>Registrar atividades do dia</h2>
+      <!-- Data e hora atual serão atualizadas automaticamente -->
+      <p id="currentDateTime" class="datetime"></p>
+      <form id="habitForm">
+        <!-- Exercícios -->
+        <div class="category">
+          <h3>Exercícios</h3>
+          <!-- Corrida -->
+          <div class="form-row">
+            <label><input type="checkbox" id="runningCheckbox" /> Corrida</label>
+            <input type="number" id="runningTime" min="0" value="0" placeholder="minutos" disabled />
+          </div>
+          <!-- Exercícios em casa -->
+          <div class="form-row">
+            <label><input type="checkbox" id="homeCheckbox" /> Exercícios em Casa</label>
+          </div>
+          <div id="homeFields" class="subfields hidden">
+            <div class="form-row">
+              <label for="flexoesCount">Flexões:</label>
+              <input type="number" id="flexoesCount" min="0" value="0" />
+            </div>
+            <div class="form-row">
+              <label for="abdominaisCount">Abdominais:</label>
+              <input type="number" id="abdominaisCount" min="0" value="0" />
+            </div>
+            <div class="form-row">
+              <label for="elevacaoCount">Elevação de Quadril:</label>
+              <input type="number" id="elevacaoCount" min="0" value="0" />
+            </div>
+            <div class="form-row">
+              <label for="agachamentoTime">Tempo em Agachamento (min):</label>
+              <input type="number" id="agachamentoTime" min="0" value="0" />
+            </div>
+          </div>
+          <!-- Musculação -->
+          <div class="form-row">
+            <label><input type="checkbox" id="weightsCheckbox" /> Musculação</label>
+            <input type="number" id="weightsTime" min="0" value="0" placeholder="minutos" disabled />
+          </div>
+        </div>
+        <!-- Estudos -->
+        <div class="category">
+          <h3>Estudos</h3>
+          <div class="form-row">
+            <label><input type="checkbox" id="studyTiCheckbox" /> TI</label>
+            <input type="number" id="studyTiTime" min="0" value="0" placeholder="minutos" disabled />
+          </div>
+          <div class="form-row">
+            <label><input type="checkbox" id="studyConcursoCheckbox" /> Concurso</label>
+            <input type="number" id="studyConcursoTime" min="0" value="0" placeholder="minutos" disabled />
+          </div>
+        </div>
+        <!-- Meditação -->
+        <div class="category">
+          <h3>Meditação</h3>
+          <div class="form-row">
+            <label><input type="checkbox" id="meditationCheckbox" /> Meditação</label>
+            <input type="number" id="meditationTime" min="0" value="0" placeholder="minutos" disabled />
+          </div>
+        </div>
+        <div class="form-row submit-row">
+          <button type="submit" id="saveButton">Salvar Registro</button>
+        </div>
+        <p id="saveMessage" class="message"></p>
+      </form>
+    </section>
+    <!-- Seção de relatórios -->
+    <section id="reportSection" class="hidden">
+      <h2>Relatórios</h2>
+      <div class="form-row">
+        <label for="reportType">Tipo de relatório:</label>
+        <select id="reportType">
+          <option value="diario">Diário</option>
+          <option value="semanal">Semanal</option>
+          <option value="mensal">Mensal</option>
+        </select>
+        <button id="exportPdf">Exportar PDF</button>
+      </div>
+      <div id="reportContainer"></div>
+    </section>
+    <!-- Seção de notificações -->
+    <section id="notificationSection" class="hidden">
+      <h2>Notificações</h2>
+      <p>
+        Para receber lembretes das metas diárias não cumpridas, é necessário
+        conceder permissão de notificações ao aplicativo. As notificações são
+        verificadas três vezes ao dia e são exibidas somente se alguma meta
+        não tiver sido alcançada.
+      </p>
+      <div class="form-row">
+        <button id="enableNotifications">Ativar Notificações</button>
+      </div>
+      <p id="notificationStatus" class="message"></p>
+    </section>
+  </main>
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>
