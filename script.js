@@ -8,7 +8,7 @@
 const GOALS = {
   running: 20,
   flexoes: 36,
-  abdominais: 45,
+  abdominais: 135,
   agachamento: 3,
   studyTi: 30,
   studyConcurso: 60,
